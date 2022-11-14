@@ -1,26 +1,99 @@
-import './App.css';
-import Header from './components/Header';
-import React from 'react';
-import { Routes,Route } from 'react-router-dom';
-import Login from "./components/Login"
-import Signup from "./components/Signup"
-import Welcome from "./components/Welcome"
+import { useState, useEffect } from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
+
+import Navbar from "./components/Navbar";
+
+import Book from "./pages/Book";
+import Login from "./pages/Login";
+import Welcome from "./pages/Welcome";
+import Signup from "./pages/Signup";
+// import Todos from "./pages/Todos";
+
+import userService from './services/user-services'
+
+let initialRender = true
 
 function App() {
-  return (
-    <React.Fragment>
- <header>
-  <Header/>
- </header>
- <main>
-  <Routes>
-    <Route path='/login'element={<Login/>}/>
-    <Route path='/signup'element={<Signup/>}/>
-    <Route path='/user'element={<Welcome/>}/>
-  </Routes>
- </main>
- </React.Fragment>
-  );
+
+    const [user, setUser] = useState({})
+    const [isLoading, setIsLoading] = useState(true)
+
+    const currentUserInfo = async () => {
+        try {
+
+            const info = await userService.info()
+
+            const { username, email } = info?.data
+            setUser({ username, email })
+        } catch (error) {
+
+            let message = error.response
+
+            if (message.includes('expire')) {
+                localStorage.removeItem('token')
+            }
+            
+            console.log(message)
+
+        } finally {
+            setIsLoading(false)
+        }
+    }
+
+    useEffect(() => {
+
+        let token = localStorage.getItem('token')
+
+        if (initialRender) {
+            if (token) {
+                currentUserInfo(token)
+                initialRender = false
+            } else {
+                setIsLoading(false)
+            }
+        }
+
+    }, [])
+
+    let routes;
+    let loggedIn = user.username
+
+    if (!isLoading) {
+        if (loggedIn) {
+            routes = (
+                <Routes>
+                    <Route path="/" element={<Book />} />
+                    <Route 
+                        path="/profile" 
+                        element={
+                            <Welcome
+                                username={user.username} 
+                                email={user.email} 
+                            />
+                        } 
+                    />
+                    {/* <Route path='/todos' element={<Todos user={user.username} />} /> */}
+                    <Route path="*" element={<Navigate to="/" />} />
+                </Routes>
+            )
+        } else {
+            routes = (
+                <Routes>
+                    <Route path="/" element={<Book />} />
+                    <Route path="/login" element={<Login setUser={setUser} />} />
+                    <Route path="/signup" element={<Signup setUser={setUser} />} />
+                    <Route path="*" element={<Navigate to="/login" />} />
+                </Routes>
+            )
+        }
+    }
+
+    return ( 
+        <div className="app">
+            <Navbar user={user.username} setUser={setUser} />
+            {routes}
+        </div>
+     );
 }
 
 export default App;
