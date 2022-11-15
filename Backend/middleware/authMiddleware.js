@@ -26,7 +26,7 @@ console.log(1)
         }
 console.log(3)
         // 3. Attach the payload from the token to the request object
-
+console.log(payload)
         req.userId = payload.id
         req.user=payload.user
 

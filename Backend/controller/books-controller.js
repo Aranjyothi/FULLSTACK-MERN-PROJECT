@@ -11,7 +11,8 @@ const index = async (req,res) =>{
 const add = async(req,res) =>{
     try{
         const createBookForCurrentUser = await BooksModel.create(req.body)
-        res.status(200).json({create:createBookForCurrentUser})
+        res.status(200).json({createuser:createBookForCurrentUser})
+        // console.log(create)
     }catch(error){
         res.status(400).json({error:error.message})
     }
