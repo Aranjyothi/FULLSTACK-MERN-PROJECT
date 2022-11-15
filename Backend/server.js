@@ -5,11 +5,11 @@ require('dotenv').config()
 
 const mongoConfig = require('./config')
 
-const authRoutes = require('./routes/auth-routes')
-const userRoutes = require('./routes/user-routes')
-// const todosRoutes = require('./routes/todosRoutes')
+const authRoutes = require('./routes/auth-route')
+const userRoutes = require('./routes/user-route')
+const booksRoutes = require('./routes/books-route')
 
-const { authorize } = require('./middleware/userMiddleware')
+const { authorize } = require('./middleware/authMiddleware')
 
 const app = express()
 
@@ -19,8 +19,8 @@ app.use(cors())
 app.use(express.json())
 
 app.use('/auth', authRoutes)
-app.use('/users', authorize, userRoutes)
-// app.use('/todos', authorize, todosRoutes)
+app.use('/user', authorize, userRoutes)
+app.use('/books', authorize, booksRoutes)
 
 
 app.listen(PORT, () => {
