@@ -3,13 +3,15 @@ import { Navigate, Route, Routes } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 
-import Book from "./pages/Book";
+
 import Login from "./pages/Login";
 import Welcome from "./pages/Welcome";
 import Signup from "./pages/Signup";
+import Books from "./components/Books";
 // import Todos from "./pages/Todos";
 
-import userService from './services/user-services'
+import userService from './services/user-service'
+import Home from "./pages/Home";
 
 let initialRender = true
 
@@ -62,9 +64,9 @@ function App() {
         if (loggedIn) {
             routes = (
                 <Routes>
-                    <Route path="/" element={<Book />} />
+                    <Route path="/" element={<Home />} />
                     <Route 
-                        path="/profile" 
+                        path="/user" 
                         element={
                             <Welcome
                                 username={user.username} 
@@ -72,14 +74,14 @@ function App() {
                             />
                         } 
                     />
-                    {/* <Route path='/todos' element={<Todos user={user.username} />} /> */}
+                    <Route path='/create' element={<Books user={user.username} />} />
                     <Route path="*" element={<Navigate to="/" />} />
                 </Routes>
             )
         } else {
             routes = (
                 <Routes>
-                    <Route path="/" element={<Book />} />
+                    <Route path="/" element={<Home />} />
                     <Route path="/login" element={<Login setUser={setUser} />} />
                     <Route path="/signup" element={<Signup setUser={setUser} />} />
                     <Route path="*" element={<Navigate to="/login" />} />

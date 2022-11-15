@@ -34,7 +34,7 @@ function Register({ setUser }) {
             navigate('/profile')
 
         } catch (error) {
-            console.log(error.response)
+            console.log(error.response.data)
             alert(error.response.data.error)
         }
 

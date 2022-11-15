@@ -16,11 +16,14 @@ ul {
   height: 40px;
   top: 5px;
   left: 5%;
+  /* margin-right: 0%; */
 }
 
 .app {
-  background-color: rgb(143, 73, 73);
-  color: rgb(212, 212, 212);
+  background-image: url("../public/book.jpg");
+  background-position: center;
+ background-size: cover;
+  color: rgb(42, 117, 229);
   height: 100vh;
 }
 
@@ -34,5 +37,8 @@ h1 {
 }
 
 ul {
-  background-color: rgb(201, 193, 193);
+  background-color: rgb(36, 192, 153);
 }
+/* .img{
+  margin-left: auto;
+} */

@@ -12,15 +12,16 @@ function Navbar({ user, setUser }) {
             <ul>
                 <li>
                     <Link to="/">
-                        <img src="./favicon.ico" alt="React Icon" id="icon"/>
+                        <img src="./book.png" alt="book Icon" id="icon" />
+                        {/* alt="React Icon" id="icon" */}
                     </Link>
                 </li>
                 <li style={{colot:'black'}}>Welcome{user}</li>
                 <li>
-                    <Link to="/todos">Todos</Link>
+                    <Link to="/books">Add books</Link>
                 </li>
                 <li>
-                    <Link to="/profile">Profile</Link>
+                    <Link to="/user">User</Link>
                 </li>
                 <li onClick={logout}>
                     <Link>Logout</Link>
@@ -32,7 +33,8 @@ function Navbar({ user, setUser }) {
             <ul>
                 <li>
                     <Link to="/">
-                        <img src="./favicon.ico" alt="React Icon" id="icon"/>
+                    <img src="./book.png" />
+                        {/* <img src="./favicon.ico" alt="React Icon" id="icon"/> */}
                     </Link>
                 </li>
                 <li>
