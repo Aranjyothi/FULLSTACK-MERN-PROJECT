@@ -6,7 +6,7 @@ import booksService from '../services/books-service'
 
 function Books ({ user }) {
 
-    const [books, setBooks] = useState([])
+    const [createuser,setCreateuser] = useState(null)
 
     let notesRef = useRef()
 
@@ -15,8 +15,8 @@ function Books ({ user }) {
         try {
             
             const response = await booksService.index()
-
-            setBooks(response.data.books)
+console.log(response.data.createuser.notes)
+            setCreateuser(response.data.createuser)
 
         } catch (error) {
             console.log(error)
@@ -25,6 +25,7 @@ function Books ({ user }) {
 
     useEffect(() => {
         getAllBooks()
+        
     }, [])
 
     const handleSubmit = async (event) => {
@@ -38,8 +39,8 @@ function Books ({ user }) {
         try {
 console.log(1)
             const response = await booksService.add(newBook)
-
-            setBooks([...books, response.data.create])
+console.log(response.data.createuder)
+setCreateuser([...createuser, response.data.create])
             notesRef.current.value = ''
 
         } catch (error) {
@@ -59,8 +60,8 @@ console.log(1)
                 height: '100%',
                 padding: '20px'
             }}>
-                {Books.map(b => 
-                    <li key={b._id}> {b.notes}</li>
+                {createuser?.map(c => 
+                    <li key={c._id}> {c.notes}</li>
                 )}
             </ol>
 

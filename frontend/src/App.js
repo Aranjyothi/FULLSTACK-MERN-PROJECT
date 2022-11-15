@@ -74,7 +74,7 @@ function App() {
                             />
                         } 
                     />
-                    <Route path='/create' element={<Books user={user.username} />} />
+                    <Route path='/books' element={<Books user={user.username} />} />
                     <Route path="*" element={<Navigate to="/" />} />
                 </Routes>
             )
