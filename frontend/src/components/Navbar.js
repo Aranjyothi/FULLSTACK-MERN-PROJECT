@@ -25,6 +25,9 @@ function Navbar({ user, setUser }) {
         <li>
           <Link to="/user">User</Link>
         </li>
+        <li>
+          <Link to="/about">About</Link>
+        </li>
         <li onClick={logout}>
           <Link>Logout</Link>
         </li>
@@ -37,14 +40,19 @@ function Navbar({ user, setUser }) {
         <ul>
         <li>
           <Link to="/">
-            <img src="./book.png" alt="BookIcon" id="image" />
+          <GiOpenBook/>
+            {/* <img src="./book.png" alt="BookIcon" id="image" /> */}
           </Link>
         </li>
+       
         <li>
           <Link to="/login">Login</Link>
         </li>
         <li>
           <Link to="/signup">Signup</Link>
+        </li>
+        <li>
+          <Link to="/contact">Contact</Link>
         </li>
       </ul>
   

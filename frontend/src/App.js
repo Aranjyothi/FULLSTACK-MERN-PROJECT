@@ -8,10 +8,11 @@ import Login from "./pages/Login";
 import Welcome from "./pages/Welcome";
 import Signup from "./pages/Signup";
 import Books from "./components/Books";
-// import Todos from "./pages/Todos";
+import Contact from "./pages/Contact";
 
 import userService from './services/user-service'
 import Home from "./pages/Home";
+import About from "./components/About";
 
 let initialRender = true
 
@@ -76,12 +77,15 @@ function App() {
                     />
                     <Route path='/books' element={<Books user={user.username} />} />
                     <Route path="*" element={<Navigate to="/" />} />
+                    <Route path="/about"element={<About/>}/>
+                  
                 </Routes>
             )
         } else {
             routes = (
                 <Routes>
                     <Route path="/" element={<Home />} />
+                    <Route path="/contact"element={<Contact/> }/>
                     <Route path="/login" element={<Login setUser={setUser} />} />
                     <Route path="/signup" element={<Signup setUser={setUser} />} />
                     <Route path="*" element={<Navigate to="/login" />} />
