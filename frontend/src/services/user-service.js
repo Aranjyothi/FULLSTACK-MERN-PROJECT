@@ -1,23 +1,25 @@
 import axios from 'axios'
+import baseURL from './baseUrl'
 
 const getToken = () => {
     let token = localStorage.getItem("token")
     return token ? token : ''
 }
 
-const axiosTodos = () => axios.create({
-    baseURL: 'http://localhost:8080/todos',
+const axiosBook = () => axios.create({
+    baseURL: baseURL + '/auth',
+    // baseURL: 'http://localhost:8080/todos',
     headers: {
         'Authorization': `Bearer ${getToken()}`
     }
 })
 
 const index = () => {
-    return axiosTodos().get('/index')
+    return axiosBook().get('/index')
 }
 
-const add = (newTodo) => {
-    return axiosTodos().post('/add', newTodo)
+const add = (newbook) => {
+    return axiosBook().post('/add', newbook)
 }
 
 const services = {

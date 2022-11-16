@@ -1,4 +1,5 @@
 import axios from 'axios'
+import baseURL from './baseUrl'
 
 const getToken = () => {
     let token = localStorage.getItem("token")
@@ -6,7 +7,8 @@ const getToken = () => {
 }
 
 const axiosBooks = () => axios.create({
-    baseURL: 'http://localhost:8080/books',
+    baseURL: baseURL + '/books',
+    // baseURL: 'http://localhost:8080/books',
     headers: {
         'Authorization': `Bearer ${getToken()}`
     }

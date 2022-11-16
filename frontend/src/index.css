@@ -24,8 +24,9 @@ ul {
 /* overflow: hidden; */
  background-size: cover;
  /* background-attachment: fixed; */
-  color: rgb(42, 117, 229);
+  color: rgb(61, 5, 141);
   height: 100vh;
+  opacity: .8;
  
  
 }
