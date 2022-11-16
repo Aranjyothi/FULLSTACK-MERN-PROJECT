@@ -17,9 +17,11 @@ const add = async(req,res) =>{
         res.status(400).json({error:error.message})
     }
 }
-const edit = async(req,res)=>{
+const update = async(req,res)=>{
+    console.log(req.params.id)
+    console.log(req.body)
     try{
-        const editForCurrentUser = await BooksModel.edit(req.body)
+        const editForCurrentUser = await BooksModel.findByIdAndUpdate(req.params.id, req.body)
         res.status(200).json({edit:editForCurrentUser})
     }catch(error){
         res.status(400).json({error:error.message})
@@ -37,7 +39,7 @@ const clear = async(req,res)=>{
 
 const clearAll = async (req,res)=>{
     try{
-        const deleteAllUsers = await BooksModel.deleteall(req.body)
+        const deleteAllUsers = await BooksModel.removeAllListeners(req.body)
     res.status(200).json({deleteall:deleteAllUsers})
     }catch(errpr){
         res.status(400).json({error:error.message})
@@ -51,7 +53,7 @@ const clearAll = async (req,res)=>{
 module.exports = {
     index,
     add,
-    edit,
+    update,
     clear,
     clearAll
 }
