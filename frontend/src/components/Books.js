@@ -91,8 +91,10 @@ console.log(response)
           <li className="li" key={c._id}>
             {" "}
             {c.notes}
+            {/* <button onClick={handledelete}>Del</button> */}
             <span onClick={handledelete}><TiDeleteOutline/></span>
             {/* <input  */}
+            {/* <button onClick={()=>handlechange(c._id)}>Edit</button> */}
             <span onClick={()=>handlechange(c._id)}><AiFillEdit/></span>
             {bookid === c._id && 
             <>

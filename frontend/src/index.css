@@ -20,7 +20,8 @@ ul {
 }
 
 .app {
-  background-image: url("../public/book.jpg");
+  background-image: url('../public/book1.jpg');
+  /* background-image: url("../public/book.jpg"); */
 /* overflow: hidden; */
  background-size: cover;
  /* background-attachment: fixed; */
@@ -48,7 +49,8 @@ h1 {
 }
 
 ul {
-  background-color: rgb(36, 192, 153);
+  background-color: rgb(228, 223, 215);
+  color: rgb(62, 1, 115);
 }
 .li{
   font-size: medium;
