@@ -17,15 +17,20 @@ function Login({ setUser }) {
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value })
     }
-
+    const baseURL = 
+    process.env.NODE_ENV === 'development'
+    ?
+    'http://localhost:8080'
+    :
+    process.env.REACT_APP_BASE_URL
     const handleSubmit = async (e) => {
         e.preventDefault()
 console.log(1)
         try {
 console.log(2)
-            const response = await axios.post('http://localhost:8080/auth/login', form)
+            const response = await axios.post(baseURL+'/auth/login', form)
             
-            const info = await axios.get('http://localhost:8080/users/info', {
+            const info = await axios.get(baseURL+'/users/info', {
                 headers: {
                     'Authorization': `Bearer ${response.data.token}`
                 }
