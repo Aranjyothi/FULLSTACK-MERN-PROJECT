@@ -19,11 +19,11 @@ const index = () => {
 const add = (newBook) => {
     return axiosBooks().post('/add', newBook)
 }
-const edit = (editBook) =>{
-    return axiosBooks().put('/edit',editBook)
+const update = (id,newNotes) =>{
+    return axiosBooks().put('/edit/'+id,{notes:newNotes})
 }
 const clear = (clearBook) =>{
-    return axiosBooks().put('/delete',clearBook)
+    return axiosBooks().delete('/clear',clearBook)
 }
 const clearAll= (removeAllBooks) =>{
     return axiosBooks().put('/delete',removeAllBooks)
@@ -32,7 +32,7 @@ const clearAll= (removeAllBooks) =>{
 const services = {
     index,
     add,
-    edit,
+    update,
     clear,
     clearAll
 }

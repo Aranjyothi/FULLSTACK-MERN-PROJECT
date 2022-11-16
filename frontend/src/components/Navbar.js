@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
-import{AppBar,IconButton,Toolbar} from "@mui/material"
-// import ContactsIcon from '@mui/icons-material/Contacts';
-import ContactsIcon from '@material-ui/icons/Contacts';
+import {GiOpenBook} from 'react-icons/gi'
 
 
 function Navbar({ user, setUser }) {
@@ -12,22 +10,15 @@ function Navbar({ user, setUser }) {
 
   if (user) {
     return (
-      <AppBar position="static">
-        <Toolbar>
-        <IconButton size="large" edge="start" color="inherit"aria-label="logo">
-            <ContactsIcon/>
-
-        </IconButton>
-
-
-        <ul>
+            <ul>
         <li>
           <Link to="/">
-            <img src="./book.png" alt="book Icon" id="icon" />
-            {/* alt="React Icon" id="icon" */}
+            <GiOpenBook/>
+            {/* <img src="./book.png" alt="book Icon" id="icon" /> */}
+           
           </Link>
         </li>
-        <li style={{ colot: "black" }}>Welcome{user}</li>
+        <li style={{ colot: "black" }}>Welcome {user}</li>
         <li>
           <Link to="/books">Add books</Link>
         </li>
@@ -38,14 +29,11 @@ function Navbar({ user, setUser }) {
           <Link>Logout</Link>
         </li>
       </ul>
-      </Toolbar>
-           
-      </AppBar>
+   
     );
   } else {
     return (
-      <AppBar position="static">
-        <Toolbar>
+     
         <ul>
         <li>
           <Link to="/">
@@ -60,9 +48,7 @@ function Navbar({ user, setUser }) {
         </li>
       </ul>
   
-        </Toolbar>
-      </AppBar>
-    );
+       );
   }
 }
 

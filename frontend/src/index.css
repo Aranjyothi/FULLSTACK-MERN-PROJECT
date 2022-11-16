@@ -21,10 +21,12 @@ ul {
 
 .app {
   background-image: url("../public/book.jpg");
-  background-position: center;
+/* overflow: hidden; */
  background-size: cover;
+ /* background-attachment: fixed; */
   color: rgb(42, 117, 229);
   height: 100vh;
+ 
 }
 
 form {
@@ -39,6 +41,6 @@ h1 {
 ul {
   background-color: rgb(36, 192, 153);
 }
-/* .img{
-  margin-left: auto;
-} */
+.li{
+  font-size: medium;
+}
