@@ -1,56 +1,86 @@
-
 import { useState } from "react";
-import axios from 'axios'
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 // import { getAllByPlaceholderText } from "@testing-library/react";
 
-
 function Login({ setUser }) {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate()
+  let [form, setForm] = useState({
+    username: "",
+    password: "",
+  });
 
-    let [form, setForm] = useState({ 
-        username: '',
-        password: ''
-    })
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+  const baseURL =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:8080"
+      : process.env.REACT_APP_BASE_URL;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(1);
+    try {
+      console.log(2);
+      const response = await axios.post(baseURL + "/auth/login", form);
 
-    const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value })
+      const info = await axios.get(baseURL + "/users/info", {
+        headers: {
+          Authorization: `Bearer ${response.data.token}`,
+        },
+      });
+      console.log(response.data.token);
+
+      localStorage.setItem("token", response.data.token);
+      setUser(info.data);
+      navigate("/profile");
+    } catch (error) {
+      console.log(error.response);
+      alert(error.response);
     }
-    const baseURL = 
-    process.env.NODE_ENV === 'development'
-    ?
-    'http://localhost:8080'
-    :
-    process.env.REACT_APP_BASE_URL
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-console.log(1)
-        try {
-console.log(2)
-            const response = await axios.post(baseURL+'/auth/login', form)
-            
-            const info = await axios.get(baseURL+'/users/info', {
-                headers: {
-                    'Authorization': `Bearer ${response.data.token}`
-                }
-            })
-            console.log(response.data.token)
+  };
 
-            localStorage.setItem("token", response.data.token)
-            setUser(info.data)
-            navigate('/profile')
+  return (
+    <>
+      <form className="login" onSubmit={handleSubmit}>
+        <h1>Login</h1>
+        <label htmlFor="username" for="exampleInputName1" class="form-label">
+          User Name:
+        </label>
+        <input
+          type="name"
+          class="form-control"
+          name="username"
+          id="exampleInputName1"
+          onChange={handleChange}
+          value={form.username}
+          aria-describedby="emailHelp"
+          placeholder="Name"
+        />
+        {/* <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> */}
 
-        } catch (error) {
-            console.log(error.response)
-            alert(error.response)
-        }
+        <label for="exampleInputPassword1" class="form-label">
+          Password:
+        </label>
+        <input
+          type="password"
+          class="form-control"
+          id="exampleInputPassword1"
+          name="password"
+          onChange={handleChange}
+          value={form.password}
+          placeholder="Password"
+        />
 
-
-    }
-
-    return ( 
-        <>
+        {/* <input type="checkbox" class="form-check-input" id="exampleCheck1"/>
+    <label class="form-check-label" for="exampleCheck1">Check me out</label> */}
+        <br />
+        <button type="submit" class="btn btn-primary">
+          Submit
+        </button>
+      </form>
+      {/* <div className="login">
             <h1>Login</h1>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="username">Username:</label>
@@ -75,101 +105,10 @@ console.log(2)
                 <br /><br />
                 <button>Submit</button>
             </form>
-        </>
-     );
+            </div> */}
+    </>
+  );
 }
 
 export default Login;
 
-
-
-
-
-
-
-
-
-
-
-
-// import { Button, TextField, Box, Typography } from "@mui/material";
-// import React, { useState } from "react";
-// import axios from "axios";
-// import { useNavigate } from "react-router-dom";
-
-// function Login({setUser}) {
-//   const history = useNavigate();
-//   const [inputs, setInputs] = useState({
-  
-//     email: "",
-//     password: "",
-//   });
-
-//   const sendRequest = async () => {
-//     console.log(inputs)
-//     const res = await axios
-//       .post("http://localhost:8080/api/login", {
-//         name: inputs.name,
-//         email: inputs.email,
-//         password: inputs.password,
-//       })
-//       .catch((err) => console.log(err));
-//     const data = await res.data;
-//   console.log(data);
-//   setUser(data.user)
-//     return data;
-//   };
-
-//   const handleChange = (e) => {
-//     setInputs({ ...inputs, [e.target.name]: e.target.value });
-//   };
-//   //  console.log(inputs);
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     sendRequest().then((data) => history("/user"));
-//     console.log(inputs);
-//   };
-//   //send http request
-
-//   return (
-//     <div>
-//       <form onSubmit={handleSubmit}>
-//         <Box
-//           marginLeft="auto"
-//           marginRight="auto"
-//           width={300}
-//           display="flex"
-//           flexDirection={"column"}
-//           jyustifyCenter="center"
-//           alignItems="center"
-//         >
-//           <Typography variant="h2">Login</Typography>
-//           <TextField
-//             name="email"
-//             onChange={handleChange}
-//             type={"email"}
-//             value={inputs.email}
-//             variant="outlined"
-//             placeholder="email"
-//             margin="normal"
-//           />
-//           <TextField
-//             name="password"
-//             onChange={handleChange}
-//             type={"password"}
-//             value={inputs.password}
-//             variant="outlined"
-//             placeholder="password"
-//             margin="normal"
-//           />
-//           <Button variant="contained" type="submit">
-//             Login
-//           </Button>
-//         </Box>
-//       </form>
-//     </div>
-//   );
-// }
-
-// export default Login;

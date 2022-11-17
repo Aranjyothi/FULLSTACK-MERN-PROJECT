@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
-import {GiOpenBook} from 'react-icons/gi'
-
+import { GiOpenBook } from "react-icons/gi";
 
 function Navbar({ user, setUser }) {
   const logout = () => {
@@ -10,12 +9,10 @@ function Navbar({ user, setUser }) {
 
   if (user) {
     return (
-            <ul>
+      <ul>
         <li>
           <Link to="/">
-            <GiOpenBook/>
-            {/* <img src="./book.png" alt="book Icon" id="icon" /> */}
-           
+            <GiOpenBook />
           </Link>
         </li>
         <li style={{ colot: "black" }}>Welcome {user}</li>
@@ -32,19 +29,16 @@ function Navbar({ user, setUser }) {
           <Link>Logout</Link>
         </li>
       </ul>
-   
     );
   } else {
     return (
-     
-        <ul>
+      <ul>
         <li>
           <Link to="/">
-          <GiOpenBook/>
-            {/* <img src="./book.png" alt="BookIcon" id="image" /> */}
+            <GiOpenBook />
           </Link>
         </li>
-       
+
         <li>
           <Link to="/login">Login</Link>
         </li>
@@ -55,8 +49,7 @@ function Navbar({ user, setUser }) {
           <Link to="/contact">Contact</Link>
         </li>
       </ul>
-  
-       );
+    );
   }
 }
 

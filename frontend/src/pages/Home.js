@@ -1,6 +1,6 @@
 function Home() {
   return ( 
-      <h1>Book</h1>
+      <h1> Welcome to your Book page</h1>
    );
 }
 
