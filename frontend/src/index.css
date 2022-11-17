@@ -12,6 +12,7 @@ ul {
   
 }
 .book{
+  background-image: url('../public/book3.jpg');
   text-align: left;
   margin-left: 70%;
   margin-right: 10%;
