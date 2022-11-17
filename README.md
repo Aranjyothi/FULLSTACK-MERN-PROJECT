@@ -9,16 +9,16 @@ React, express, Node, HTML, CSS, JavaScript, mongoDB, bootStrap
 # Instalastions are:
 For the **Books App** some packages that may need to be install:
 ### For Frontend:
-react
-bootstrap for CSS
+react,
+bootstrap for CSS,
 axios
 ### Backend:
-express
-mongoDB
-dotenv
-node_modules
-JWT
-bcrypt
+express,
+mongoDB,
+dotenv,
+node_modules,
+JWT,
+bcrypt,
 cors
 ### To run both servers:
 I installed **concurrently**.
